@@ -10,13 +10,13 @@
                     </v-row>
                     <v-form @submit.prevent v-model="isValid">
                         <v-card-text>
-                            <v-text-field :rules="emailRules" variant="outlined" type="email" outlined v-model="email" label="Email"></v-text-field>
+                            <v-text-field :rules="emailRules" variant="outlined" type="email" v-model="email" label="Email"></v-text-field>
                             <v-text-field :rules="passwordRules" variant="outlined" v-model="password" label="Password"  :type="show ? 'text' : 'password'"  :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:appendInner="show = !show"></v-text-field>
                             <v-checkbox v-model="rememberme" label="Remember me"></v-checkbox>
                         </v-card-text>
                         <v-card-actions class="px-4">
                             <v-spacer></v-spacer>
-                            <v-btn depressed dark color="blue" class="px-5 text-capitalize" @click="login" :disabled="!isValid">Masuk</v-btn>
+                            <v-btn depressed dark color="blue" class="px-5" @click="login" :disabled="!isValid" :loading="loading">Masuk</v-btn>
                         </v-card-actions>
                     </v-form>
                 </v-card>
@@ -28,6 +28,7 @@
 import image from '../assets/user.png'
 import { useAuthStore } from '../stores/auth'
 import { mapStores } from 'pinia'
+import router from '../router'
 
 export default {
     computed: {
@@ -54,7 +55,13 @@ export default {
     },
     methods: {
         login(){
+            this.loading = true
             this.authStore.login(this.email,this.password)
+            .then(()=> {
+               if(this.authStore.checking() === true) setTimeout(() => this.loading = false,1000)
+               else setTimeout(()=> this.$router.push('/'),1000)
+            })
+            .catch(() => this.loading = false)
         }
     }
 }

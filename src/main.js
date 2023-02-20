@@ -11,12 +11,12 @@ import Base from './layout/base.vue'
 const app = createApp(App)
 const pinia = createPinia()
 
+app.component('auth-layout', Auth)
+app.component('base-layout', Base)
+
 app.use(pinia)
 app.use(router)
 app.use(vuetify)
 
-
-app.component('auth-layout', Auth)
-app.component('base-layout', Base)
 
 app.mount('#app')
