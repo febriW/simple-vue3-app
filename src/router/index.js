@@ -4,12 +4,25 @@ import Login from '../components/Login.vue'
 
 const routes = [
   {
+    path: '/',
+    name: 'home',
+    component: HomeView,
+    meta: {
+      requireAuth: true,
+      layout: 'base-layout'
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue'),
+    meta: {
+      requireAuth: true,
+      layout: 'base-layout'
+    }
   },
   {
     path: '/login',
@@ -32,6 +45,9 @@ router.beforeEach((to,from,next) => {
   else next()
 
   if(to.meta.requireAuth == true && !localStorage.getItem('user')) next({name: 'login'})
+  else next()
+
+  if(to.name === 'login' && localStorage.getItem('users')) next({name: 'about'})
   else next()
 })
 

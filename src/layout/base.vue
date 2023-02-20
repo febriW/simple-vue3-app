@@ -14,7 +14,12 @@
             <v-divider></v-divider>
 
             <v-list>
-                <v-list-item title="Navigation drawer" />
+                <v-list-item link @click="logout">
+                    <v-icon>mdi-logout</v-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Logout</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
@@ -30,9 +35,21 @@
     </v-layout>
 </template>
 <script>
+import image from '../assets/user.png'
+import { useAuthStore } from '../stores/auth'
+import { mapStores } from 'pinia'
+
 export default {
+    computed: {
+        ...mapStores(useAuthStore)
+    },
     data: ()=>({
         drawer: false
-    })
+    }),
+    methods: {
+        logout(){
+            this.authStore.logout()
+        }
+    }
 }
 </script>

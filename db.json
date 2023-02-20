@@ -1,4 +1,5 @@
-[
+{
+  "account": [
     {
       "id": 1,
       "firstName": "Terry",
@@ -6,10 +7,10 @@
       "maidenName": "Smitham",
       "age": 50,
       "gender": "male",
-      "email": "atuny0@sohu.com",
+      "email": "testing@testing.com",
       "phone": "+63 791 675 8914",
       "username": "atuny0",
-      "password": "9uQFF1Lh",
+      "password": "testing",
       "birthDate": "2000-12-25",
       "image": "https://robohash.org/hicveldicta.png",
       "bloodGroup": "A−",
@@ -6096,3 +6097,4 @@
       "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0; ja-JP) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16"
     }
   ]
+}

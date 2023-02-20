@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import router from '../router'
 
 export const useAuthStore = defineStore("auth",{
     state: () => ({
@@ -7,20 +8,23 @@ export const useAuthStore = defineStore("auth",{
     }),
     actions: {
         async login(email, password) {
-            const user = await fetch('@/helpers.db.json')
-            .then(res => {
-                const user = res.firstname
-                const check = res.find(f => f.password === password && f.email === email)
-                    if(check)
-                        localStorage.setItem('user', JSON.stringify(user))
-                        router.push('/')
-                }
-            )
+            const user = await fetch('../../db.json')
+            .then((res) => { return res.json()})
+            .then((json) => {
+                const check = json.account.find(f => f.password === password && f.email === email)
+                if(check)
+                    localStorage.setItem('user', JSON.stringify(check))
+                    router.push('/')
+            })
             .catch((err)=> {
                 console.error(err)
                 localStorage.removeItem('user')
-                reject(err)
             })
+        },
+
+        logout(){
+            localStorage.removeItem('user')
+            router.push('/login')
         }
     }
 })
