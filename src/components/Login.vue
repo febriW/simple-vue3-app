@@ -8,15 +8,15 @@
                             <v-img :src="image" aspect-ratio="2" p-5/>
                         </v-col>
                     </v-row>
-                    <v-form @submit.prevent>
+                    <v-form @submit.prevent v-model="isValid">
                         <v-card-text>
-                            <v-text-field variant="outlined" type="email" outlined v-model="email" label="Email" ></v-text-field>
-                            <v-text-field variant="outlined" v-model="password" label="Password"  :type="show ? 'text' : 'password'"  :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:appendInner="show = !show"></v-text-field>
+                            <v-text-field :rules="emailRules" variant="outlined" type="email" outlined v-model="email" label="Email"></v-text-field>
+                            <v-text-field :rules="passwordRules" variant="outlined" v-model="password" label="Password"  :type="show ? 'text' : 'password'"  :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:appendInner="show = !show"></v-text-field>
                             <v-checkbox v-model="rememberme" label="Remember me"></v-checkbox>
                         </v-card-text>
                         <v-card-actions class="px-4">
                             <v-spacer></v-spacer>
-                            <v-btn depressed dark color="blue" class="px-5 text-capitalize" @click="login" >Masuk</v-btn>
+                            <v-btn depressed dark color="blue" class="px-5 text-capitalize" @click="login" :disabled="!isValid">Masuk</v-btn>
                         </v-card-actions>
                     </v-form>
                 </v-card>
@@ -40,7 +40,16 @@ export default {
             password: '',
             loading: false,
             rememberme: false,
-            image: image
+            image: image,
+            isValid: true,
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'E-mail must be valid',
+            ],
+            passwordRules: [
+                v => !!v || 'Password is required',
+                v => (v && v.length >= '6') || 'Password length must be at least 6 character',
+            ],
         }
     },
     methods: {
