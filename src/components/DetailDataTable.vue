@@ -1,16 +1,29 @@
 <template>
     <v-container fluid>
         <v-row align="start" no-gutters>
-            <v-col md="7" lg="8">
-                <v-col cols="12" class="py-0"><h1>Tessting</h1></v-col>
+            <v-btn
+                size="small"
+                color="primary"
+                dark
+                link to="/table"
+                class="hidden-md-and-down my-4 mx-4"
+                >
+                <v-icon aria-hidden="false" small class="mr-2">mdi-arrow-left</v-icon>Kembali
+            </v-btn>
+            <v-col cols="12">
+                <v-col cols="12" class="py-0"><h1>Detail Data</h1></v-col>
                 <v-col cols="12">
                     <v-card>
-                        <v-list>
-                            <v-list-item>
-                                <v-list-item-content>First Name</v-list-item-content>
-                                <v-list-item-content class="justify-end">{{ data.firstName }}</v-list-item-content>
-                            </v-list-item>
-                        </v-list>
+                        <v-card-text>
+                            <v-row>
+                                <v-col 
+                                    cols="4"
+                                    v-for="(value,key) in data"
+                                >
+                                    {{ key }} : {{ value }}
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
                     </v-card>
                 </v-col>
             </v-col>
