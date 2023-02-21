@@ -14,11 +14,24 @@
             <v-divider></v-divider>
 
             <v-list>
+                <v-list-item
+                    v-for="(menu, i) in menu"
+                    :key="i"
+                    :value="menu"
+                    active-color="primary"
+                    :to="menu.link"
+                >
+                    <template v-slot:prepend>
+                        <v-icon :icon="menu.icon"></v-icon>
+                    </template>
+                    <v-list-item-title v-text="menu.text"></v-list-item-title>
+                </v-list-item>
+
                 <v-list-item link @click="logout">
-                    <v-icon>mdi-logout</v-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>Logout</v-list-item-title>
-                    </v-list-item-content>
+                    <template v-slot:prepend>
+                        <v-icon icon="mdi-logout"></v-icon>
+                    </template>
+                    <v-list-item-title>Logout</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -44,7 +57,12 @@ export default {
         ...mapStores(useAuthStore)
     },
     data: ()=>({
-        drawer: false
+        drawer: false,
+        menu: [
+            {text: 'Home', link:'/', icon:'mdi-home'},
+            {text: 'Table', link:'/table', icon:'mdi-table'},
+            {text: 'Portofolio', link:'/portofolio', icon:'mdi-information-outline'},
+        ]
     }),
     methods: {
         logout(){

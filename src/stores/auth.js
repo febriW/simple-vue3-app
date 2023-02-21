@@ -19,12 +19,14 @@ export const useAuthStore = defineStore("auth",{
                 }
                 else{
                     localStorage.removeItem('user')
-                    this.message = 'Akun tidak dapat ditemukan'
+                    this.message = 'Akun tidak dapat ditemukan, Pastikan email dan password sudah benar..!'
                     this.errors = true
                 }
                         
             })
             .catch((err)=> {
+                this.message = 'Gagal menghubungi server..!'
+                this.errors = true
                 localStorage.removeItem('user')
             })
         },
