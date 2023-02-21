@@ -71,15 +71,14 @@
                         <v-row class="pb-6">
                             <v-col>
                                 <p class="text-h4 pb-2">Education</p>
-                                <p class="text-body-1">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut vulputate dolor. Maecenas in ornare sem.
-                                    Donec tincidunt blandit massa sollicitudin luctus. Integer at viverra velit, non aliquet libero.
-                                    Ut ac rhoncus sapien. Morbi sed sollicitudin turpis, nec luctus nisl. Vivamus accumsan, nisl ut varius vulputate,
-                                    neque purus ullamcorper turpis, id tincidunt enim libero sit amet lorem. Donec est nisi, accumsan id justo quis, consequat faucibus orci.
-                                    Sed eget tristique odio. Vestibulum quis libero vitae tortor ultrices elementum. Vivamus tristique purus vel metus mattis,
-                                    non eleifend ante fringilla. Curabitur feugiat elementum odio, blandit maximus arcu posuere sit amet.
-                                    Sed feugiat odio non nisl volutpat ornare. Vivamus gravida risus arcu, sit amet aliquam arcu maximus ac.
-                                    Nulla porta neque a dolor egestas, pharetra semper ex volutpat.
+                                <p class="text-body-1 font-weight-bold">Universitas Budi Luhur, Jakarta Selatan</p>
+                                <p class="text-body-1">Bachelor of Engineering - Computer Science</p>
+                                <p class="text-body-2 font-weight-thin">August 2019 - September 2021</p><br>
+                                <p class="text-body-1">GPA: 3.44</p>
+                                <p class="text-body-1">started working in third year on campus as an IT Staff at Universitas Budi Luhur. Besides my studies at college,
+                                    While in college, I also participated in volunteer activities,
+                                    Working in a team as a member consisting of 10 people. Culture Exchange,
+                                    Providing assistance for exchange students from Meiji University on a daily basis and collaborating together doing social services
                                 </p>
                             </v-col>
                         </v-row>
@@ -87,16 +86,20 @@
                         <v-row class="pb-6">
                             <v-col>
                                 <p class="text-h4 pb-2">Skills & Other</p>
-                                <p class="text-body-1">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut vulputate dolor. Maecenas in ornare sem.
-                                    Donec tincidunt blandit massa sollicitudin luctus. Integer at viverra velit, non aliquet libero.
-                                    Ut ac rhoncus sapien. Morbi sed sollicitudin turpis, nec luctus nisl. Vivamus accumsan, nisl ut varius vulputate,
-                                    neque purus ullamcorper turpis, id tincidunt enim libero sit amet lorem. Donec est nisi, accumsan id justo quis, consequat faucibus orci.
-                                    Sed eget tristique odio. Vestibulum quis libero vitae tortor ultrices elementum. Vivamus tristique purus vel metus mattis,
-                                    non eleifend ante fringilla. Curabitur feugiat elementum odio, blandit maximus arcu posuere sit amet.
-                                    Sed feugiat odio non nisl volutpat ornare. Vivamus gravida risus arcu, sit amet aliquam arcu maximus ac.
-                                    Nulla porta neque a dolor egestas, pharetra semper ex volutpat.
-                                </p>
+                                <v-row no-gutters>
+                                    <v-col
+                                        class="py-5"
+                                        cols="2"
+                                        v-for="image in images"
+                                    >
+                                        <v-img
+                                            :width="200"
+                                            aspect-ratio="4/3"
+                                            cover
+                                            :src="image"
+                                        />
+                                    </v-col>
+                                </v-row>
                             </v-col>
                         </v-row>
                     </v-card-text>
@@ -107,13 +110,26 @@
     </v-container>
 </template>
 <script>
+import vue from '../assets/vue.png'
+import ci from '../assets/codeigniter.png'
+import laravel from '../assets/laravel.png'
+import javascript from '../assets/javascript.png'
+import jquery from '../assets/jquery.png'
+import sql from '../assets/sql.png'
+import oracle from '../assets/oracle.png'
+import mysql from '../assets/mysql.png'
+import sass from '../assets/sass.png'
+import bootstrap from '../assets/bootstrap.png'
+import git from '../assets/git.png'
+
 export default {
     data: () => {
         return {
             information: [
                 { text: 'febriwanda26@gmail.com', icon: 'mdi-email'},
                 { text: 'linkedin.com/febri-wanda', icon: 'mdi-linkedin'}
-            ]
+            ],
+            images: [ vue,ci,laravel,javascript,jquery,sql,oracle,mysql,sass,bootstrap,git ]
         }
     }
 }
