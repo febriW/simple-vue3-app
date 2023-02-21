@@ -86,14 +86,14 @@
                         <v-row class="pb-6">
                             <v-col>
                                 <p class="text-h4 pb-2">Skills & Other</p>
-                                <v-row no-gutters>
+                                <v-row>
                                     <v-col
                                         class="py-5"
                                         cols="2"
                                         v-for="image in images"
                                     >
                                         <v-img
-                                            :width="200"
+                                            :width="150"
                                             aspect-ratio="4/3"
                                             cover
                                             :src="image"
