@@ -23,6 +23,19 @@
             </v-col>
         </v-row>
     </v-container>
+
+    <v-snackbar v-model="showerr" color="red" :timeout="timeout">
+        <p class="mb-0" v-html="message"></p>
+        <template v-slot:actions>
+            <v-btn
+            color="white"
+            variant="text"
+            @click="showerr = false"
+            >
+            <v-icon dark>mdi-close</v-icon>
+            </v-btn>
+        </template>
+    </v-snackbar>
 </template>
 <script>
 import image from '../assets/user.png'
@@ -36,6 +49,9 @@ export default {
     data(){
         return {
             show: false,
+            showerr: false,
+            timeout: 6000,
+            message: '',
             email: '',
             password: '',
             loading: false,
@@ -57,8 +73,15 @@ export default {
             this.loading = true
             this.authStore.login(this.email,this.password)
             .then(()=> {
-               if(this.authStore.checking() === true) setTimeout(() => this.loading = false,1000)
-               else setTimeout(()=> this.$router.push('/'),1000)
+               if(this.authStore.error() === true) {
+                   setTimeout(() => this.loading = false,1000)
+                   this.message = this.authStore.messages()
+                   this.showerr = true
+               }
+               else{
+                   setTimeout(()=> this.$router.push('/'),1000)
+
+               }
             })
             .catch(() => this.loading = false)
         }
