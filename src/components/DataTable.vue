@@ -19,12 +19,13 @@
                     :items="data"
                     class="elevation-1"
                     :search="search"
+                    :items-per-page="5"
                     @click:row="goTo"
                 >
                     <template v-slot:top>
                         <v-toolbar flat color="white">
-                        <v-toolbar-title class="headline">Data Asset</v-toolbar-title>
-                    </v-toolbar>
+                            <v-toolbar-title class="headline">Data Asset</v-toolbar-title>
+                        </v-toolbar>
                     </template>
                 </v-data-table>
             </v-col>
@@ -37,18 +38,25 @@ export default {
     components: {
         VDataTable
     },
+    defaults: {
+        VDataTable: {
+            noDataText: 'Data tidak dapat ditemukan'
+        }
+    },
     data: () => ({
         search: '',
         data: [],
         headers: [
-            { text: 'First Name', value: 'firstName'},
-            { text: 'Last Name', value: 'lastName'},
-            { text: 'Maiden Name', value: 'maidenName'},
+            { title: 'First Name', key: 'firstName'},
+            { title: 'Last Name', key: 'lastName'},
+            { title: 'Maiden Name', key: 'maidenName'},
+            { title: 'Email', key: 'email'}
         ]
     }),
     methods: {
-        goTo(e){
-            console.log(e.firstName)
+        goTo(item,row,){
+            console.log(row.item.props.title.id)
+            this.$router.push({name:'tabledetail', params: { id: row.item.props.title.id}})
         }
     },
     beforeRouteEnter(to, from, next) {

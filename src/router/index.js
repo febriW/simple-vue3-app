@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '../components/Login.vue'
 import DataTable from '../components/DataTable.vue'
+import Portofolio from '../components/Portofolio.vue'
+import DetailDataTable from '../components/DetailDataTable.vue'
 
 const routes = [
   {
@@ -26,6 +28,24 @@ const routes = [
     path: '/table',
     name: 'dataTable',
     component: DataTable,
+    meta: {
+      requireAuth: true,
+      layout: 'base-layout'
+    }
+  },
+  {
+    path: '/tabledetail/:id',
+    name: 'tabledetail',
+    component: DetailDataTable,
+    meta: {
+      requireAuth: true,
+      layout: 'base-layout'
+    }
+  },
+  {
+    path: '/portofolio',
+    name: 'portofolio',
+    component: Portofolio,
     meta: {
       requireAuth: true,
       layout: 'base-layout'

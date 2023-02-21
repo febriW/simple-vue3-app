@@ -29,7 +29,7 @@
             </template>
         </v-app-bar>
 
-        <v-main style="min-height: 100vh;">
+        <v-main>
             <RouterView />
         </v-main>
     </v-layout>

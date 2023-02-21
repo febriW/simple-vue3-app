@@ -28,7 +28,6 @@
 import image from '../assets/user.png'
 import { useAuthStore } from '../stores/auth'
 import { mapStores } from 'pinia'
-import router from '../router'
 
 export default {
     computed: {
